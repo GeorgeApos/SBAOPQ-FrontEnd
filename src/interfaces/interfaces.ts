@@ -1,4 +1,4 @@
-interface projectResponseData {
+export type projectResponseData = {
     id: number;
     gitUrl: string;
     sha : string;
@@ -12,7 +12,7 @@ interface projectResponseData {
 
 }
 
-interface projectFileResponseData {
+export type projectFileResponseData = {
     id: number;
     first_file: string;
     name: string;
@@ -26,6 +26,6 @@ interface projectFileResponseData {
     projectName: string;
 }
 
-interface commentResponseData {
+export type commentResponseData = {
     comment: string;
 }
