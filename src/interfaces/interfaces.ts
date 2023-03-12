@@ -5,6 +5,8 @@ export type projectResponseData = {
     owner: string;
     name: string;
     directory: string;
+    dependencies: string[];
+    dependenciesCounter: number;
     files: projectFileResponseData[];
     totalCoverage: number;
     totalMiss: number;
@@ -20,6 +22,7 @@ export type projectFileResponseData = {
     miss: number;
     coverage: number;
     comments: commentResponseData[];
+    similarity: Similarity;
     rating: number;
     previousRating: number;
     project: projectResponseData;
@@ -28,4 +31,8 @@ export type projectFileResponseData = {
 
 export type commentResponseData = {
     comment: string;
+}
+
+interface Similarity {
+    [fileName: string]: number;
 }
