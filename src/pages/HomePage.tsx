@@ -22,7 +22,7 @@ export const HomePage = () => {
     }
 
     const handleShowButtonClick = () => {
-        axios.get(`http://localhost:8080/projects/?gitUrl=${inputValue}`,
+        axios.get(`http://${localhost}:8080/projects/?gitUrl=${inputValue}`,
             {headers: {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'}})
             .then((response) => {
@@ -36,7 +36,7 @@ export const HomePage = () => {
 
     const handleStartButtonClick = () => {
         setLoading(true);
-        axios.post(`http://localhost:8080/projects/?gitUrl=${inputValue}`,
+        axios.post(`http://${localhost}:8080/projects/?gitUrl=${inputValue}`,
             {headers: {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'}})
             .then((response) => {
@@ -132,18 +132,24 @@ export const HomePage = () => {
                         </tr>
                         </thead>
                         <tbody className="table-body">
-                        {responseData.files.map((file) => (
-                            <tr className="table-row" key={file.id}>
-                                {Object.keys(file.similarity).map((key) => (
-                                    file.name !== key && (
-                                        <td className="table-data" key={key}>
-                                            {key}={file.similarity[key]}
-                                        </td>
-                                    )
-                                ))}
+                        {responseData.files.map((mainFile) => (
+                            <tr className="table-row" key={mainFile.id}>
+                                <td className="table-data">{mainFile.name}</td>
+                                <td className="table-data">
+                                    {Object.keys(mainFile.similarity).map((key) => (
+                                        mainFile.name !== key && (
+                                            <div key={key}>
+                                                {key} = <b>{mainFile.similarity[key]} %</b>
+                                            </div>
+                                        )
+                                    ))}
+                                </td>
                             </tr>
                         ))}
                         </tbody>
+
+
+
                     </table>
 
 
